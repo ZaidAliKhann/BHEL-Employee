@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "./src",
     "target": "ES2022",
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
