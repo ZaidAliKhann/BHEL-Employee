@@ -1,0 +1,6 @@
+{
+  "name": "BHEL Employee Management Portal",
+  "description": "An enterprise-grade full-stack employee management portal for Bharat Heavy Electricals Limited (BHEL) featuring secure authentication, persistent database, attendance, leaves, payroll, and Gemini AI assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

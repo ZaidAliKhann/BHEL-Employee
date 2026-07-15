@@ -1,0 +1,456 @@
+{
+  "employees": [
+    {
+      "id": "BHEL1001",
+      "passwordHash": "$2b$10$yCNA7L2kCgjCZLqvyyXknuR.CG/VOGN0QEOy1bhfAaTNpE1wVxkPy",
+      "name": "Zaid Ali Khan",
+      "designation": "INTERN",
+      "department": "Engineering & IT Department",
+      "reportingManager": "Hareesh Sir",
+      "email": "zaidgbu247@gmail.com",
+      "phone": "+91 9026937796",
+      "emergencyContact": "+91 9000000000 (Father)",
+      "dateOfJoining": "2024-06-01",
+      "status": "Active",
+      "leaveBalance": {
+        "casual": 8,
+        "sick": 10,
+        "earned": 15
+      },
+      "performanceRating": 4.8
+    },
+    {
+      "id": "BHEL2001",
+      "passwordHash": "$2b$10$yCNA7L2kCgjCZLqvyyXknuR.CG/VOGN0QEOy1bhfAaTNpE1wVxkPy",
+      "name": "Zareen Fatima",
+      "designation": "HR General Manager",
+      "department": "Human Resources Department",
+      "reportingManager": "Hareesh Sir",
+      "email": "zareenfatimaa786@gmail.com",
+      "phone": "+91 9000000000",
+      "emergencyContact": "+91 9111111111 (Mother)",
+      "dateOfJoining": "2023-01-15",
+      "status": "Active",
+      "leaveBalance": {
+        "casual": 6,
+        "sick": 12,
+        "earned": 18
+      },
+      "performanceRating": 4.9
+    },
+    {
+      "id": "BHEL453",
+      "passwordHash": "$2b$10$U3oYxkjF0nX.38ZqlsF4lOnqK62wo0vBYGEK2bXAVHZT1NYcaCJQy",
+      "name": "SD",
+      "designation": "Executive Trainee",
+      "department": "Engineering Department",
+      "reportingManager": "Hareesh Sir",
+      "email": "SZA@GMAIL.CM",
+      "phone": "9548214886",
+      "emergencyContact": "+91 9000000000 (Primary)",
+      "dateOfJoining": "2026-07-13",
+      "status": "Active",
+      "leaveBalance": {
+        "casual": 8,
+        "sick": 10,
+        "earned": 15
+      },
+      "performanceRating": 5
+    }
+  ],
+  "attendance": [
+    {
+      "id": "att-1001-0",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-01",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-0",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-01",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-1",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-02",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-1",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-02",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-2",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-03",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-2",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-03",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-3",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-04",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-3",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-04",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-4",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-05",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-4",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-05",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-5",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-08",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-5",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-08",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-6",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-09",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-6",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-09",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-7",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-10",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-7",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-10",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-8",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-11",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-8",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-11",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    },
+    {
+      "id": "att-1001-9",
+      "employeeId": "BHEL1001",
+      "date": "2026-06-12",
+      "status": "Present",
+      "checkIn": "09:02:15",
+      "checkOut": "17:35:40",
+      "workHours": 8.5
+    },
+    {
+      "id": "att-2001-9",
+      "employeeId": "BHEL2001",
+      "date": "2026-06-12",
+      "status": "Present",
+      "checkIn": "08:58:30",
+      "checkOut": "17:05:12",
+      "workHours": 8.1
+    }
+  ],
+  "leaves": [
+    {
+      "id": "lv-1001-1",
+      "employeeId": "BHEL1001",
+      "type": "Casual",
+      "startDate": "2026-06-15",
+      "endDate": "2026-06-16",
+      "reason": "Family gathering in Lucknow",
+      "status": "Approved",
+      "createdAt": "2026-06-10T10:15:00.000Z"
+    },
+    {
+      "id": "lv-1001-2",
+      "employeeId": "BHEL1001",
+      "type": "Sick",
+      "startDate": "2026-07-01",
+      "endDate": "2026-07-02",
+      "reason": "Viral Fever and Rest",
+      "status": "Approved",
+      "createdAt": "2026-06-30T16:45:00.000Z"
+    },
+    {
+      "id": "lv-2001-1",
+      "employeeId": "BHEL2001",
+      "type": "Earned",
+      "startDate": "2026-07-20",
+      "endDate": "2026-07-24",
+      "reason": "Summer vacation trip",
+      "status": "Pending",
+      "createdAt": "2026-07-05T11:00:00.000Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "tsk-1001-1",
+      "employeeId": "BHEL1001",
+      "title": "Optimize Core Turbines Dashboard",
+      "description": "Update the electrical production SCADA visualizer components with high efficiency SVG renders and Recharts charts.",
+      "priority": "High",
+      "status": "Pending",
+      "deadline": "2026-07-15",
+      "progress": 60,
+      "assignedBy": "R. K. Srivastava (Executive Director)",
+      "createdAt": "2026-07-01T09:30:00.000Z"
+    },
+    {
+      "id": "tsk-1001-2",
+      "employeeId": "BHEL1001",
+      "title": "Integrate Gemini Helpdesk Agent",
+      "description": "Embed Google Gemini API model connection server-side to resolve employee queries on HR policies and office navigation.",
+      "priority": "Medium",
+      "status": "Completed",
+      "deadline": "2026-07-10",
+      "progress": 100,
+      "assignedBy": "R. K. Srivastava (Executive Director)",
+      "createdAt": "2026-07-02T10:00:00.000Z"
+    },
+    {
+      "id": "tsk-1001-3",
+      "employeeId": "BHEL1001",
+      "title": "Review Cybersecurity Logs",
+      "description": "Audit the login IPs, JWT session expirations and database write operations to secure against credential-stuffing.",
+      "priority": "Low",
+      "status": "Pending",
+      "deadline": "2026-07-25",
+      "progress": 10,
+      "assignedBy": "System Administrator",
+      "createdAt": "2026-07-08T08:00:00.000Z"
+    },
+    {
+      "id": "tsk-2001-1",
+      "employeeId": "BHEL2001",
+      "title": "Conduct Performance Appraisals Q2",
+      "description": "Complete quarterly performance scorecards for engineering leads in BHEL Haridwar & Bhopal manufacturing units.",
+      "priority": "High",
+      "status": "Pending",
+      "deadline": "2026-07-20",
+      "progress": 40,
+      "assignedBy": "Director (HR)",
+      "createdAt": "2026-07-01T09:00:00.000Z"
+    }
+  ],
+  "salary": [
+    {
+      "id": "sal-1001-1",
+      "employeeId": "BHEL1001",
+      "month": "June",
+      "year": 2026,
+      "baseSalary": 75000,
+      "hra": 25000,
+      "allowances": 25000,
+      "deductions": 8500,
+      "netSalary": 116500,
+      "status": "Paid",
+      "paidAt": "2026-06-30T18:00:00.000Z"
+    },
+    {
+      "id": "sal-1001-2",
+      "employeeId": "BHEL1001",
+      "month": "May",
+      "year": 2026,
+      "baseSalary": 75000,
+      "hra": 25000,
+      "allowances": 25000,
+      "deductions": 8500,
+      "netSalary": 116500,
+      "status": "Paid",
+      "paidAt": "2026-05-31T18:00:00.000Z"
+    },
+    {
+      "id": "sal-2001-1",
+      "employeeId": "BHEL2001",
+      "month": "June",
+      "year": 2026,
+      "baseSalary": 95000,
+      "hra": 35000,
+      "allowances": 30000,
+      "deductions": 11000,
+      "netSalary": 149000,
+      "status": "Paid",
+      "paidAt": "2026-06-30T18:00:00.000Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-global-1",
+      "employeeId": "all",
+      "title": "BHEL Annual General Meeting (AGM) Scheduled",
+      "message": "The BHEL Board of Directors is pleased to announce that the 62nd Annual General Meeting will take place virtually on 28th July 2026. All executive members are requested to attend.",
+      "type": "Announcements",
+      "isRead": false,
+      "createdAt": "2026-07-10T10:00:00.000Z"
+    },
+    {
+      "id": "notif-global-2",
+      "employeeId": "all",
+      "title": "Cybersecurity Compliance Directive",
+      "message": "Please update your enterprise credentials. BHEL IT policy mandates dual-factor verification and password refreshes every 90 days.",
+      "type": "HR",
+      "isRead": false,
+      "createdAt": "2026-07-09T09:15:00.000Z"
+    },
+    {
+      "id": "notif-1001-1",
+      "employeeId": "BHEL1001",
+      "title": "Salary Disbursal Complete",
+      "message": "Your salary for the month of June 2026 has been credited. You can access and download your detailed payslip under the Salary and Payroll menu.",
+      "type": "Salary",
+      "isRead": false,
+      "createdAt": "2026-06-30T18:15:00.000Z"
+    },
+    {
+      "id": "notif-1001-2",
+      "employeeId": "BHEL1001",
+      "title": "New Task Assigned",
+      "message": "R. K. Srivastava (Executive Director) has assigned a new task: \"Optimize Core Turbines Dashboard\". Please review the specifications and set milestones.",
+      "type": "Tasks",
+      "isRead": false,
+      "createdAt": "2026-07-01T09:35:00.000Z"
+    },
+    {
+      "id": "notif-1783919178210-470",
+      "employeeId": "BHEL453",
+      "title": "Welcome to BHEL ERM Portal",
+      "message": "Dear SD, your corporate employee account has been created successfully. Welcome to Bharat Heavy Electricals Limited.",
+      "type": "Announcements",
+      "isRead": false,
+      "createdAt": "2026-07-13T05:06:18.210Z"
+    }
+  ],
+  "chatMessages": [
+    {
+      "id": "msg-1",
+      "employeeId": "BHEL1001",
+      "message": "Hello, I need help understanding my leave balance.",
+      "sender": "user",
+      "createdAt": "2026-07-10T14:20:00.000Z"
+    },
+    {
+      "id": "msg-2",
+      "employeeId": "BHEL1001",
+      "message": "Welcome Zaid! According to the BHEL Employee database, you currently have 8 Casual Leaves, 10 Sick Leaves, and 15 Earned Leaves remaining. You can apply for leave directly from the Leave Management section.",
+      "sender": "ai",
+      "createdAt": "2026-07-10T14:20:05.000Z"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "log-1783919183409-151",
+      "employeeId": "BHEL453",
+      "action": "User Login",
+      "details": "Successfully logged in to BHEL Employee Portal.",
+      "timestamp": "2026-07-13T05:06:23.409Z",
+      "device": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "log-1783919178212-350",
+      "employeeId": "BHEL453",
+      "action": "Account Creation",
+      "details": "New employee account registered in the BHEL Portal.",
+      "timestamp": "2026-07-13T05:06:18.212Z",
+      "device": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36",
+      "ip": "127.0.0.1"
+    },
+    {
+      "id": "log-1",
+      "employeeId": "BHEL1001",
+      "action": "System Seeded",
+      "details": "Initial corporate database successfully provisioned and secured with bcrypt.",
+      "timestamp": "2026-07-13T05:06:18.096Z"
+    }
+  ]
+}
