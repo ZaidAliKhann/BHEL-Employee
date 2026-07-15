@@ -785,3 +785,8 @@ async function bootstrap() {
 bootstrap().catch(err => {
   console.error('Failed to start full-stack server:', err);
 });
+// Start the server on the environment port or fallback to 5000
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`BHEL Server running successfully on port ${PORT}`);
+});
