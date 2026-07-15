@@ -21,7 +21,6 @@
       ]
     },
     "allowImportingTsExtensions": true,
-    "noEmit": false
-    "outDir": "./dist"
+    "noEmit": true
   }
 }
