@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: 'BHEL-Employee',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
