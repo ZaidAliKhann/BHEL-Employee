@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
-import { db, Employee, Attendance, LeaveRequest, Task, SalaryRecord, Notification, ChatMessage, ActivityLog } from './src/backend/db.js';
+import { db, Employee, Attendance, LeaveRequest, Task, SalaryRecord, Notification, ChatMessage, ActivityLog } from './backend/db.js';
 
 dotenv.config();
 
