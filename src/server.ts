@@ -775,7 +775,7 @@ async function bootstrap() {
       res.sendFile(path.join(__dirname, 'dist', 'index.html'));
     });
   }
-
+}
 bootstrap().catch(err => {
   console.error('Failed to start full-stack server:', err);
 });
