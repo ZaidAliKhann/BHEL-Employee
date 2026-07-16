@@ -773,9 +773,9 @@ async function bootstrap() {
   } else {
     console.log('Starting BHEL employee portal in production mode...');
     // Serve build files from dist directory
-    app.use(express.static(path.join(__dirname, 'dist')));
+    app.use(express.static(path.join(__dirname, '..', 'dist')));
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+      res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
     });
   }
 }
