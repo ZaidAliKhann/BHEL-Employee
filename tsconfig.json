@@ -11,11 +11,9 @@
       "DOM",
       "DOM.Iterable"
     ],
-    "moduleResolution": "bundler",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
+    "skipLibCheck": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "allowJs": true,
