@@ -23,6 +23,8 @@
       ]
     },
     "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
+    "noEmit": true,
+    "exclude": ["node_modules", "dist"]
+  },
+  "include": ["src"]
 }
