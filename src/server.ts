@@ -772,14 +772,13 @@ async function bootstrap() {
     app.use(vite.middlewares);
   } else {
     console.log('Starting BHEL employee portal in production mode...');
-    // Serve build files from dist directory
+// Serve build files from dist directory
         app.use(express.static('dist'));
 
         app.get('*', (req, res) => {
             res.sendFile(path.resolve('dist', 'index.html'));
         });
-    });
-  }
+    }
 }
 bootstrap().catch(err => {
   console.error('Failed to start full-stack server:', err);
