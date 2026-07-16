@@ -13,6 +13,8 @@
     ],
     "skipLibCheck": true,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "allowJs": true,
