@@ -11,6 +11,9 @@
       "DOM",
       "DOM.Iterable"
     ],
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
