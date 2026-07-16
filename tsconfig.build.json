@@ -7,8 +7,9 @@
     "skipLibCheck": true,
     "allowJs": true,
     "checkJs": false,
-    "noEmit": true,
-    "outDir": "./dist"
+    "strict": false,
+    "outDir": "./dist",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"]
   },
-  "include": ["src"]
+  "include": ["src/**/*"]
 }
