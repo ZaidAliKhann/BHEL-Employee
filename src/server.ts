@@ -776,12 +776,6 @@ async function bootstrap() {
     });
   }
 
-  const PORT = 3000;
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`BHEL Portal Server listening on http://0.0.0.0:${PORT}`);
-  });
-}
-
 bootstrap().catch(err => {
   console.error('Failed to start full-stack server:', err);
 });
