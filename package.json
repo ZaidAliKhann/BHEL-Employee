@@ -6,7 +6,7 @@
   "homepage": "https://zaidalikhann.github.io/BHEL-Employee/",
   "scripts": {
     "dev": "NODE_ENV=development tsx watch server.ts",
-    "build": "tsc --moduleResolution node",
+    "build": "tsc --skipLibCheck --noEmit false"
     "start": "node dist/server.js",
     "preview": "vite preview",
     "clean": "rm -rf dist",
