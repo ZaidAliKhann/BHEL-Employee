@@ -3,26 +3,13 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "target": "ES2022",
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
     "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "moduleDetection": "force",
     "allowJs": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
+    "jsx": "react-jsx"
   },
   "include": ["src"]
 }
