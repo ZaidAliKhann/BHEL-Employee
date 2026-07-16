@@ -9,7 +9,7 @@
     "checkJs": false,
     "strict": false,
     "outDir": "./dist",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"]
+    "rootDir": "./src"
   },
   "include": ["src/**/*"]
 }
