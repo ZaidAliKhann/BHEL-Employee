@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "noEmit": false
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -8,8 +7,7 @@
     "skipLibCheck": true,
     "allowJs": true,
     "checkJs": false,
-    "noImplicitAny": false,
-    "strict": false,
+    "noEmit": true,
     "outDir": "./dist"
   },
   "include": ["src"]
