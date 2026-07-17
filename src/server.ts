@@ -35,7 +35,6 @@ interface AuthenticatedRequest extends Request {
   params: any;
   query: any;
 }
-}
 
 // Authentication Middleware
 function authenticateToken(req: AuthenticatedRequest, res: Response, next: NextFunction): void {
