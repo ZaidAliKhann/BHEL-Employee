@@ -34,7 +34,7 @@ interface AuthenticatedRequest extends Request {
   body: any;
   params: any;
   query: any;
-  };
+  }
 }
 
 // Authentication Middleware
