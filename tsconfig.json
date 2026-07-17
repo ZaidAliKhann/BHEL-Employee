@@ -3,6 +3,8 @@
     "target": "ES2022",
     "module": "Preserve",
     "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "types": ["node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowJs": true,
@@ -11,5 +13,5 @@
     "outDir": "./dist",
     "rootDir": "./src"
   },
-  "include": ["src/**/*", "server.ts"] 
+  "include": ["src/**/*", "server.ts"]
 }
