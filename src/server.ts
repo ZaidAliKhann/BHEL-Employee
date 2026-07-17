@@ -29,9 +29,11 @@ app.use(express.json());
 
 // Extend Express Request type to include user information
 interface AuthenticatedRequest extends Request {
-  user?: {
-    id: string;
-    name: string;
+  user?: any;
+  headers: any;
+  body: any;
+  params: any;
+  query: any;
   };
 }
 
