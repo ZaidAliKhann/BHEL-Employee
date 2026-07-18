@@ -43,6 +43,17 @@ export default function Attendance({
     setSuccess('');
     setCheckingIn(true);
     try {
+      const response = await fetch('/api/attendance/check-in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Check-in failed');
+      
       await onCheckIn();
       setSuccess('Daily check-in registered successfully. Have a productive day at BHEL!');
     } catch (err: any) {
@@ -57,6 +68,17 @@ export default function Attendance({
     setSuccess('');
     setCheckingOut(true);
     try {
+      const response = await fetch('/api/attendance/check-out', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Check-out failed');
+
       await onCheckOut();
       setSuccess('Daily check-out registered successfully. Your shift has concluded.');
     } catch (err: any) {
@@ -66,12 +88,10 @@ export default function Attendance({
     }
   };
 
-  // Summaries
   const presentCount = attendanceLogs.filter(a => a.status === 'Present').length;
   const leaveCount = attendanceLogs.filter(a => a.status === 'Leave').length;
   const averageHours = attendanceLogs.filter(a => a.workHours).reduce((acc, curr) => acc + (curr.workHours || 0), 0) / (attendanceLogs.filter(a => a.workHours).length || 1);
 
-  // June 2026 Holiday Calendar
   const holidayCalendar = [
     { date: '2026-06-05', name: 'Id-ul-Zuha (Bakrid)', type: 'Gazetted Holiday' },
     { date: '2026-07-04', name: 'Muharram', type: 'Gazetted Holiday' },
@@ -85,10 +105,7 @@ export default function Attendance({
 
   return (
     <div className="space-y-8 animate-fade-in">
-      {/* Attendance Header / Interactive Check terminal */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Real-time Check In/Out Terminal */}
         <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm flex flex-col justify-between">
           <div>
             <span className="text-[10px] uppercase font-bold tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
@@ -106,7 +123,6 @@ export default function Attendance({
             </div>
 
             <div className="flex gap-3 justify-center">
-              {/* Check-In Button */}
               <button
                 onClick={handleCheckInClick}
                 disabled={!!todayRecord || checkingIn}
@@ -123,7 +139,6 @@ export default function Attendance({
                 Check In Shift
               </button>
 
-              {/* Check-Out Button */}
               <button
                 onClick={handleCheckOutClick}
                 disabled={!todayRecord || !!todayRecord?.checkOut || checkingOut}
@@ -142,7 +157,6 @@ export default function Attendance({
             </div>
           </div>
 
-          {/* Feedback alerts */}
           {error && (
             <div className="flex items-center gap-2.5 text-xs text-rose-600 bg-rose-50 border border-rose-100 rounded-lg p-3.5 mb-4">
               <ShieldAlert className="h-4 w-4 shrink-0" />
@@ -172,7 +186,6 @@ export default function Attendance({
           )}
         </div>
 
-        {/* Dynamic Attendance Statistics Card */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm flex flex-col justify-between">
           <h3 className="font-display text-sm font-bold text-slate-900 uppercase tracking-wider">Metrics Overview</h3>
           
@@ -199,10 +212,7 @@ export default function Attendance({
         </div>
       </div>
 
-      {/* Grid of holiday calendar and historical logs */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* Historical Logs Table */}
         <div className="lg:col-span-2 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
             <h3 className="font-display text-sm font-bold text-slate-900 uppercase tracking-wider">Historical Attendance Records</h3>
@@ -249,7 +259,6 @@ export default function Attendance({
           </div>
         </div>
 
-        {/* Gazetted Holiday Calendar */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
             <h3 className="font-display text-sm font-bold text-slate-900 uppercase tracking-wider">BHEL 2026 Holiday Calendar</h3>
@@ -272,7 +281,6 @@ export default function Attendance({
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );
