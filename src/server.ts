@@ -595,3 +595,197 @@ app.get('/api/chat/history', authenticateToken, async (req: AuthenticatedRequest
       .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
     res.json(history);
   } catch (error: any) {
+    res.status(500).json({ error: 'Failed to fetch chat history.', details: error.message });
+  }
+});
+
+// 17. Submit Chat Message & Query Gemini AI
+app.post('/api/chat/message', authenticateToken, async (req: AuthenticatedRequest, res) => {
+  const { message } = req.body;
+
+  if (!message) {
+    res.status(400).json({ error: 'Message content is required.' });
+    return;
+  }
+
+  try {
+    const data = await db.read();
+    const employee = data.employees.find(e => e.id === req.user?.id);
+    const leaves = data.leaves.filter(l => l.employeeId === req.user?.id);
+    const tasks = data.tasks.filter(t => t.employeeId === req.user?.id);
+    const salaries = data.salary.filter(s => s.employeeId === req.user?.id);
+    const attendance = data.attendance.filter(a => a.employeeId === req.user?.id);
+
+    if (!employee) {
+      res.status(404).json({ error: 'Employee session is invalid.' });
+      return;
+    }
+
+    // Save User message in DB
+    const userMsg: ChatMessage = {
+      id: `msg-${Date.now()}-u`,
+      employeeId: employee.id,
+      message,
+      sender: 'user',
+      createdAt: new Date().toISOString()
+    };
+    data.chatMessages.push(userMsg);
+
+    // Fetch previous conversation to provide context
+    const conversationHistory = data.chatMessages
+      .filter(m => m.employeeId === employee.id)
+      .slice(-10); // last 10 messages for context
+
+    // Construct detailed context about the specific employee
+    const systemInstruction = `
+You are the BHEL Enterprise AI Support Agent, a dedicated, highly knowledgeable, and friendly virtual assistant built for Bharat Heavy Electricals Limited (BHEL) employees.
+Your current user profile:
+- Name: ${employee.name}
+- Employee ID: ${employee.id}
+- Designation: ${employee.designation}
+- Department: ${employee.department}
+- Reporting Manager: ${employee.reportingManager}
+- Date of Joining: ${employee.dateOfJoining}
+- Employment Status: ${employee.status}
+
+Leave Balance:
+- Casual Leaves remaining: ${employee.leaveBalance.casual}
+- Sick Leaves remaining: ${employee.leaveBalance.sick}
+- Earned Leaves remaining: ${employee.leaveBalance.earned}
+
+Leave Request History:
+${JSON.stringify(leaves.map(l => ({ type: l.type, start: l.startDate, end: l.endDate, reason: l.reason, status: l.status })))}
+
+Assigned Tasks:
+${JSON.stringify(tasks.map(t => ({ title: t.title, desc: t.description, status: t.status, progress: t.progress, deadline: t.deadline })))}
+
+Payroll Records (Recent Salary slips):
+${JSON.stringify(salaries.map(s => ({ month: s.month, year: s.year, net: s.netSalary, status: s.status })))}
+
+Recent Attendance:
+- Checked-In logs: ${JSON.stringify(attendance.map(a => ({ date: a.date, status: a.status, in: a.checkIn, out: a.checkOut, hours: a.workHours })))}
+
+Core BHEL Information:
+- BHEL is a central Public Sector Enterprise under the Ministry of Heavy Industries, Government of India. It is India's largest power generation equipment manufacturer.
+- Vision: "A global engineering enterprise providing solutions for a better tomorrow."
+- Mission: "Providing sustainable business solutions in the fields of Energy, Industry & Infrastructure with focus on Quality, Technology & Innovation."
+- Manufacturing Units: Haridwar, Bhopal, Jhansi, Hyderabad, Tiruchirappalli, Ranipet, Bengaluru, Jagdishpur, Rudrapur, Goindwal, and Visakhapatnam.
+- Core Values: Respect, Excellence, Integrity, Learning, Teamwork (REILT).
+- Help Desk Contacts: HR Helpline (011-66337000), Email: hr_support@bhel.in, Address: BHEL House, Siri Fort, New Delhi - 110049.
+
+Instructions:
+- Maintain a highly professional, humble, and polite corporate PSU assistant tone.
+- Answer user's queries using their real-time profile details listed above (e.g., if they ask about leaves, refer to their 8 Casual leaves remaining, etc.).
+- Give helpful navigation suggestions (e.g., "You can apply for leave in the 'Leave Management' sidebar menu").
+- Do not make up mock data. Refer directly to the provided employee records. If requested information is not available, offer HR helpline contacts.
+- Keep responses relatively concise and structured.
+`;
+
+    // Package previous messages into the structure for Gemini
+    const contents = conversationHistory.map(msg => ({
+      role: msg.sender === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.message }]
+    }));
+
+    // Trigger Gemini API generateContent
+    const geminiResponse = await ai.models.generateContent({
+      model: 'gemini-3.5-flash',
+      contents: contents,
+      config: {
+        systemInstruction,
+        temperature: 0.7,
+      }
+    });
+
+    const aiText = geminiResponse.text || "I apologize, I experienced a minor connection latency with the BHEL enterprise server. Please try asking again in a moment, or contact HR at hr_support@bhel.in.";
+
+    // Save AI response in DB
+    const aiMsg: ChatMessage = {
+      id: `msg-${Date.now()}-ai`,
+      employeeId: employee.id,
+      message: aiText,
+      sender: 'ai',
+      createdAt: new Date().toISOString()
+    };
+    data.chatMessages.push(aiMsg);
+
+    await db.write(data);
+
+    res.json({ userMsg, aiMsg });
+  } catch (error: any) {
+    console.error('Gemini chatbot error:', error);
+    res.status(500).json({ error: 'AI Assistant failed to process query.', details: error.message });
+  }
+});
+
+// 18. Global Search across tasks, documents, notifications, and salary slips
+app.get('/api/search', authenticateToken, async (req: AuthenticatedRequest, res) => {
+  const query = (req.query.q as string || '').toLowerCase();
+
+  if (!query) {
+    res.json({ tasks: [], notifications: [], salary: [], documents: [] });
+    return;
+  }
+
+  try {
+    const data = await db.read();
+    const tasks = data.tasks.filter(t => t.employeeId === req.user?.id && (t.title.toLowerCase().includes(query) || t.description.toLowerCase().includes(query)));
+    const notifications = data.notifications.filter(n => (n.employeeId === 'all' || n.employeeId === req.user?.id) && (n.title.toLowerCase().includes(query) || n.message.toLowerCase().includes(query)));
+    const salary = data.salary.filter(s => s.employeeId === req.user?.id && (s.month.toLowerCase().includes(query) || String(s.year).includes(query)));
+
+    // Virtual documents search
+    const docsList = [
+      { id: 'doc-1', title: 'Offer Letter', type: 'Appointment', date: '2024-05-15' },
+      { id: 'doc-2', title: 'BHEL Identity Card Digital', type: 'Identification', date: '2024-06-01' },
+      { id: 'doc-3', title: 'Employee Cybersecurity Pledge', type: 'Compliance', date: '2024-06-05' },
+      { id: 'doc-4', title: 'HR Leave Policy Guidebook 2026', type: 'Policy', date: '2026-01-01' }
+    ];
+    const documents = docsList.filter(d => d.title.toLowerCase().includes(query) || d.type.toLowerCase().includes(query));
+
+    res.json({ tasks, notifications, salary, documents });
+  } catch (error: any) {
+    res.status(500).json({ error: 'Search operation failed.', details: error.message });
+  }
+});
+
+// 19. Get Activity Audit Logs
+app.get('/api/logs', authenticateToken, async (req: AuthenticatedRequest, res) => {
+  try {
+    const data = await db.read();
+    const logs = data.activityLogs.filter(l => l.employeeId === req.user?.id).slice(0, 50); // last 50 logs
+    res.json(logs);
+  } catch (error: any) {
+    res.status(500).json({ error: 'Failed to fetch audit logs.', details: error.message });
+  }
+});
+
+/* ==================== VITE INTEGRATION ==================== */
+
+async function bootstrap() {
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  if (!isProduction) {
+    console.log('Starting BHEL employee portal in development mode with Vite middleware...');
+    const vite = await createViteServer({
+      server: { middlewareMode: true },
+      appType: 'spa',
+    });
+    app.use(vite.middlewares);
+  } else {
+    console.log('Starting BHEL employee portal in production mode...');
+// Serve build files from dist directory
+        app.use(express.static('dist'));
+
+        app.get('*', (req, res) => {
+            res.sendFile(path.resolve('dist', 'index.html'));
+        });
+    }
+}
+bootstrap().catch(err => {
+  console.error('Failed to start full-stack server:', err);
+});
+// Start the server on the environment port or fallback to 5000
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`BHEL Server running successfully on port ${PORT}`);
+});
